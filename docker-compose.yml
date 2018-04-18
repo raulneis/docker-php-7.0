@@ -1,0 +1,12 @@
+version: '2'
+services:
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: ${IMAGE_NAME}
+    ports:
+      - ${PORT}:80
+    volumes:
+      - ${SRC}:/var/www/html
