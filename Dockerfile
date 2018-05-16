@@ -31,10 +31,16 @@ ADD php.ini-apache /etc/php/7.0/apache2/php.ini
 ADD php.ini-cli /etc/php/7.0/cli/php.ini
 
 RUN a2enmod rewrite headers
+RUN phpdismod -s cli xdebug
 
 RUN mkdir -p /var/www/html
+RUN mkdir -p /.composer
+
 WORKDIR /var/www/html
+
+RUN usermod -u 1000 www-data
 RUN chown www-data:www-data /var/www -R
+RUN chown www-data:www-data /.composer -R
 
 env APACHE_RUN_USER    www-data
 env APACHE_RUN_GROUP   www-data
