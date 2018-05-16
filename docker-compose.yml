@@ -1,7 +1,7 @@
 version: '2'
 services:
   app:
-    restart: always
+    # restart: always
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -10,3 +10,16 @@ services:
       - ${PORT}:80
     volumes:
       - ${SRC}:/var/www/html
+    depends_on:
+      - "db"
+  db:
+    restart: always
+    image: postgres
+    ports:
+      - ${DBPORT}:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ${DBDATA}:/var/lib/postgresql/data
