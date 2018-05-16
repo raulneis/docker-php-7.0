@@ -15,6 +15,7 @@ RUN apt install -y php7.0-mbstring
 RUN apt install -y php7.0-mcrypt
 RUN apt install -y php7.0-xml
 RUN apt install -y php7.0-zip
+RUN apt install -y php7.0-gd
 RUN apt install -y php-xdebug
 RUN apt install -y composer
 RUN apt install -y git
