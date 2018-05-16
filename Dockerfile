@@ -19,12 +19,21 @@ RUN apt install -y php7.0-gd
 RUN apt install -y php-xdebug
 RUN apt install -y composer
 RUN apt install -y git
-RUN apt install -y nodejs
-RUN apt install -y npm
 RUN apt install -y redis-server
-RUN npm install -g nodemon
+
+RUN apt install -y curl
+WORKDIR /home/root
+RUN curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+
+RUN apt install -y nodejs
+# RUN apt install -y npm
+# RUN npm install -g nodemon
+
+RUN apt install -y nano
 
 RUN apt clean
+
 
 
 ADD php.ini-apache /etc/php/7.0/apache2/php.ini
